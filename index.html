@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vāstrāmāya</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7f7;
+      color: #333;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    h1 {
+      margin: 0.2rem;
+      font-size: 2rem;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      background-color: #444;
+      padding: 0.5rem 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section {
+      padding: 1rem;
+    }
+    .section h2 {
+      margin-bottom: 0.5rem;
+      color: #444;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .product {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 1rem;
+      width: 200px;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .product button {
+      background-color: #ffcc00;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #cart-count {
+      background: red;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-left: 5px;
+      font-size: 0.8rem;
+    }
+    footer {
+      margin-top: 2rem;
+      background-color: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .footer-links a {
+      color: #ffcc00;
+      margin: 0 10px;
+      text-decoration: underline;
+    }
+    .form-section {
+      display: none;
+      max-width: 400px;
+      margin: auto;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+    .form-section input {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .form-section button {
+      width: 100%;
+      background-color: #28a745;
+      color: white;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vāstrāmāya</h1>
+    <p>Tradition, Fashion & Style</p>
+    <button onclick="signInWithGoogle()">Login with Gmail</button>
+  </header>
+
+  <nav>
+    <a href="#men">Men</a>
+    <a href="#women">Women</a>
+    <a href="#jewelry">Jewelry</a>
+    <a href="#children">Children</a>
+    <a href="#" onclick="viewCart()">Your Cart <span id="cart-count">0</span></a>
+  </nav>
+
+  <div id="main-content">
+    <div class="section" id="men">
+      <h2>Men's Collection</h2>
+      <div class="products">
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1600180758890-6f55b285cf34" alt="Men's Kurta" />
+          <p>Royal Kurta<br>₹799</p>
+          <button onclick="addToCart('Royal Kurta', 799)">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="women">
+      <h2>Women's Collection</h2>
+      <div class="products">
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1542060748-10c28b62716c" alt="Saree" />
+          <p>Elegant Saree<br>₹1199</p>
+          <button onclick="addToCart('Elegant Saree', 1199)">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="jewelry">
+      <h2>Jewelry Collection</h2>
+      <div class="products">
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1613312411295-61c3a9b0b837" alt="Jewelry" />
+          <p>Gold Plated Necklace<br>₹599</p>
+          <button onclick="addToCart('Gold Plated Necklace', 599)">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="children">
+      <h2>Children's Collection</h2>
+      <div class="products">
+        <div class="product">
+          <img src="https://images.unsplash.com/photo-1596464716121-bb4946c92b2b" alt="Kid's Outfit" />
+          <p>Traditional Kid Set<br>₹499</p>
+          <button onclick="addToCart('Traditional Kid Set', 499)">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-section" id="checkout-form">
+    <h2>Place Your Order</h2>
+    <input type="text" id="cust-name" placeholder="Your Name" required />
+    <input type="text" id="cust-mobile" placeholder="Mobile Number" required />
+    <input type="text" id="cust-address" placeholder="Delivery Address" required />
+    <button onclick="submitOrder()">Confirm Order</button>
+  </div>
+
+  <footer>
+    <p><strong>Connect With Us:</strong> 📱 9409379636</p>
+    <p>Non-returnable & Non-refundable | 24/7 Customer Service</p>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/vastramayatraditions">Instagram</a>
+      <a href="https://www.facebook.com/share/16eXrSCxMW/">Facebook</a>
+      <a href="https://youtube.com/@vastramaya-traditions">YouTube</a>
+    </div>
+  </footer>
+    <script type="module">
+    // Firebase Gmail Login (already configured)
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD3Y8cX-Your-Demo-Key",
+      authDomain: "vastramaya-demo.firebaseapp.com",
+      projectId: "vastramaya-demo",
+      storageBucket: "vastramaya-demo.appspot.com",
+      messagingSenderId: "123456789",
+      appId: "1:123456789:web:abc"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    window.signInWithGoogle = () => {
+      signInWithPopup(auth, provider)
+        .then(result => {
+          alert("Welcome " + result.user.displayName + "!");
+        })
+        .catch(error => {
+          alert("Login failed: " + error.message);
+        });
+    };
+  </script>
+
+  <script>
+    let cart = [];
+
+    function addToCart(item, price) {
+      cart.push({ item, price });
+      document.getElementById('cart-count').textContent = cart.length;
+      alert(`${item} added to cart.`);
+    }
+
+    function viewCart() {
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      document.getElementById("main-content").style.display = "none";
+      document.getElementById("checkout-form").style.display = "block";
+    }
+
+    function submitOrder() {
+      const name = document.getElementById('cust-name').value;
+      const mobile = document.getElementById('cust-mobile').value;
+      const address = document.getElementById('cust-address').value;
+
+      if (!name || !mobile || !address) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      let orderDetails = `Name: ${name}\nMobile: ${mobile}\nAddress: ${address}\n\nItems:\n`;
+      cart.forEach(item => {
+        orderDetails += `${item.item} - ₹${item.price}\n`;
+      });
+
+      alert("Order placed successfully!\n\n" + orderDetails);
+
+      // Reset
+      cart = [];
+      document.getElementById('cart-count').textContent = "0";
+      document.getElementById("checkout-form").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }
+  </script>
+</body>
+</html>
